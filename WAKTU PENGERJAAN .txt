@@ -1,0 +1,8 @@
+Prepare Project = Ekstrak laravel, install npm dll / 10m
+Database = Buat migration, migrate, buat model / 15m
+Buat Fungsi Index = Controller, View, Route 15m
+Buat Fungsi Create = Controller, View, Route 15m
+Buat Fungsi Update = Controller, View, Route 15m
+Buat Fungsi Delete = Controller, View, Route 5m
+Buat Fungsi Print = Controller, View, Route 10m
+Tambahan fitur dll = 10m
