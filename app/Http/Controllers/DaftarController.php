@@ -84,11 +84,15 @@ class DaftarController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $data = Daftar::findOrFail($id);
-        $data->update($request->all());
+        try {
+            $data = Daftar::findOrFail($id);
+            $data->update($request->all());
+        } catch (\Exception $e) {
+            \Log::error($e);
+            return "Terjadi kesalahan";
+        }
 
         session()->flash('update', 'Data berhasil diubah!');
-
         return redirect('/index');
     }
 
