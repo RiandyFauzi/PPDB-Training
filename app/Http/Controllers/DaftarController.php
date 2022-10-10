@@ -41,7 +41,12 @@ class DaftarController extends Controller
      */
     public function store(DaftarRequest $request)
     {
-        Daftar::create($request->all());
+        try {
+            Daftar::create($request->all());
+        } catch (\Exception $e) {
+            \Log::error($e);
+            return "Terjadi kesalahan";
+        }
 
         session()->flash('simpan', 'Selamat, Anda sudah terdaftar di SMK Merdeka Belajar');
         return redirect('/index');
@@ -66,7 +71,7 @@ class DaftarController extends Controller
      */
     public function edit($id)
     {
-        $daftar = Daftar::find($id);
+        $daftar = Daftar::findOrFail($id);
         return view('daftar.edit', compact('daftar'));
     }
 
@@ -79,7 +84,7 @@ class DaftarController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $data = Daftar::find($id);
+        $data = Daftar::findOrFail($id);
         $data->update($request->all());
 
         session()->flash('update', 'Data berhasil diubah!');
@@ -95,7 +100,7 @@ class DaftarController extends Controller
      */
     public function destroy($id)
     {
-        $daftar = Daftar::find($id);
+        $daftar = Daftar::findOrFail($id);
         $daftar->delete();
 
         session()->flash('hapus', 'Data sudah Dihapus');
